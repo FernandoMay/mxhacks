@@ -41,9 +41,12 @@ class DisplayListView extends StatefulWidget {
 }
 
 class _DisplayListViewState extends State {
+
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      
       itemCount: listViewData.length,
       itemBuilder: (context, int i) => Column(
         children: [
@@ -55,7 +58,10 @@ class _DisplayListViewState extends State {
                   Icons.delete,
                   color: Colors.deepOrangeAccent,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  listViewData.removeAt(i);
+
+                },
               ),
             ),
             title: new Text(listViewData[i].medicina),

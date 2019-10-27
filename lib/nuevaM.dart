@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mxhck/alarmas.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -8,7 +9,20 @@ class newMed extends StatefulWidget {
 }
 
 class _newMedState extends State<newMed> {
-  int _currentValue = 1;
+  int _currentValue = 8;
+
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    controller1.dispose();
+    controller2.dispose();
+    controller3.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +100,7 @@ class _newMedState extends State<newMed> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 18, right: 12),
                   child: TextField(
+                    controller: controller1,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "",
@@ -131,6 +146,7 @@ class _newMedState extends State<newMed> {
                 child: Padding(
                   padding: EdgeInsets.only(left: 18, right: 12),
                   child: TextField(
+                    controller: controller2,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "",
@@ -162,13 +178,13 @@ class _newMedState extends State<newMed> {
               children: <Widget>[
                 NumberPicker.integer(
                   initialValue: _currentValue,
-                  minValue: 0,
-                  maxValue: 100,
+                  minValue: 1,
+                  maxValue: 24,
                   onChanged: (newValue) =>
                       setState(() => _currentValue = newValue),
                 ),
                 Text(
-                  'días',
+                  'horas',
                   style: TextStyle(
                     fontSize: 28.0,
                     color: Colors.deepOrangeAccent,
@@ -181,6 +197,13 @@ class _newMedState extends State<newMed> {
             ),
             GestureDetector(
               onTap: () {
+                listViewData.add(
+                  ListViewModel(
+                    medicina: controller1.text,
+                    descripcion: controller2.text,
+                    hora: _currentValue.toString(),
+                  ),
+                );
                 Navigator.pop(context);
                 // Navigator.push(
                 //   context,

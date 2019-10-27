@@ -37,12 +37,14 @@ class HomePage extends StatelessWidget {
 class MapPage extends StatefulWidget {
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
+    //target: LatLng(lat, ln),
     zoom: 14.4746,
   );
 
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
+      //target: LatLng(lat,lng),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
@@ -61,8 +63,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
-
-        mapType: MapType.normal,
+        mapType: MapType.terrain,
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
         markers: _markers,
@@ -256,36 +257,83 @@ class DisplayPictureScreen extends StatelessWidget {
               height: 16.0,
             ),
             Ficha(
-              data: 'Temperatura Máx',
-              datated: '28 °C',
+              data: 'Medicina',
+              datated: '1',
             ),
             SizedBox(
               height: 20.0,
             ),
             Ficha(
-              data: 'Temperatura Min',
-              datated: '6 °C',
+              data: 'Frecuencia',
+              datated: '8',
             ),
             SizedBox(
               height: 20.0,
             ),
             Ficha(
-              data: 'Precipitaciones',
-              datated: '0',
+              data: 'Fecha inicio',
+              datated: '23/Jun/2019',
             ),
             SizedBox(
               height: 20.0,
             ),
             Ficha(
-              data: 'Humedad',
-              datated: '4',
+              data: 'Fecha término',
+              datated: '27/Jun/2019',
             ),
             SizedBox(
               height: 20.0,
             ),
             Ficha(
-              data: 'Velocidad viento KMH',
-              datated: '2',
+              data: 'Descripción',
+              datated: 'Cura',
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //     child: Container(),
+                //     type: PageTransitionType.downToUp,
+                //   ),
+                // );
+              },
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                margin: EdgeInsets.symmetric(horizontal: 64),
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'Ok',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "aBeeZee",
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
             ),
           ],
         ),
@@ -339,7 +387,7 @@ class Ficha extends StatelessWidget {
                   child: Text(
                     datated,
                     style: TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 28.0,
                       fontStyle: FontStyle.italic,
                       color: Colors.black87,
                     ),
