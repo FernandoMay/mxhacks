@@ -12,7 +12,13 @@ class Splash extends StatelessWidget {
       backgroundColor: Colors.deepOrangeAccent,
       //photoSize: 110,
       //loaderColor: Colors.transparent,
-      title: Text('pastillaMe'),
+      title: Text(
+        'pastillaMe',
+        style: TextStyle(
+          fontSize: 38.0,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

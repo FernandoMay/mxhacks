@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mxhck/main.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:mxhck/pages.dart';
 
 class Home extends StatefulWidget {
@@ -32,7 +31,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.light,
+        backgroundColor: Colors.deepOrangeAccent,
         centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(13),
+          ),
+        ),
         title: Text(
           "pastillaMe",
           style: TextStyle(color: Colors.white),

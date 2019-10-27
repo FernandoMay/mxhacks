@@ -20,6 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        accentColor: Colors.deepOrangeAccent,
+        focusColor: Colors.deepOrangeAccent,
       ),
       home: Splash(),
     );

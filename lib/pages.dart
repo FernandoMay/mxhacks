@@ -2,10 +2,12 @@ import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:mxhck/alarmas.dart';
+import 'package:mxhck/nuevaM.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -18,7 +20,15 @@ class HomePage extends StatelessWidget {
           Icons.add_alarm,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            PageTransition(
+              child: newMed(),
+              type: PageTransitionType.downToUp,
+            ),
+          );
+        },
       ),
     );
   }
@@ -51,6 +61,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
+
         mapType: MapType.normal,
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
@@ -60,10 +71,10 @@ class _MapPageState extends State<MapPage> {
           _controller.complete(controller);
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: _goToNewYork,
         child: Icon(Icons.track_changes, color: Colors.white),
-      ),
+      ),*/
     );
   }
 
@@ -170,10 +181,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             await _controller.takePicture(path);
 
             // If the picture was taken, display it on a new screen.
+
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(imagePath: path),
+              PageTransition(
+                child: DisplayPictureScreen(imagePath: path),
+                type: PageTransitionType.downToUp,
               ),
             );
           } catch (e) {
@@ -196,10 +209,145 @@ class DisplayPictureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print(imagePath);
     return Scaffold(
-      appBar: AppBar(title: Text('Display the Picture')),
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrangeAccent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          'The Picture',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    12.0,
+                  ),
+                ),
+                height: 200.0,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 23.0,
+                  vertical: 32.0,
+                ),
+                child: Image.file(
+                  File(imagePath),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16.0,
+            ),
+            Ficha(
+              data: 'Temperatura Máx',
+              datated: '28 °C',
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Ficha(
+              data: 'Temperatura Min',
+              datated: '6 °C',
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Ficha(
+              data: 'Precipitaciones',
+              datated: '0',
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Ficha(
+              data: 'Humedad',
+              datated: '4',
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Ficha(
+              data: 'Velocidad viento KMH',
+              datated: '2',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Ficha extends StatelessWidget {
+  final String data;
+  final String datated;
+
+  Ficha({this.data, this.datated});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.zero,
+          bottomRight: Radius.zero,
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.12),
+            offset: Offset(0, 10),
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              data,
+              style: TextStyle(
+                fontSize: 18.0,
+                fontStyle: FontStyle.italic,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+          datated != null
+              ? Container(
+                  child: Text(
+                    datated,
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.black87,
+                    ),
+                  ),
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 }
