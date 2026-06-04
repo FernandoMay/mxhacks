@@ -1,16 +1,21 @@
-# mxhck
+# MX Hacks
 
-A new Flutter project.
+Flutter hackathon project with Google Maps integration and camera capabilities.
 
-## Getting Started
+## Stack
 
-This project is a starting point for a Flutter application.
+- **Flutter** (`>=2.1.0`) — Cross-platform mobile app
+- **Google Maps** — Location & mapping features
+- **Camera** — Photo capture & processing
+- **WebView** - In-app browser
+- **HTTP** — API communication
+- **Splashscreen / Page Transitions** — Polished UX
 
-A few resources to get you started if this is your first Flutter project:
+## Quick Start
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```bash
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Requires Google Maps API key.
