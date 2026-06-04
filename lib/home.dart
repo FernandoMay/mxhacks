@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mxhck/main.dart';
 import 'package:mxhck/pages.dart';
 
@@ -31,7 +32,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.light,
         backgroundColor: Colors.deepOrangeAccent,
         centerTitle: true,
         shape: RoundedRectangleBorder(
@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
         title: Text(
           "pastillaMe",
           style: TextStyle(color: Colors.white),
-        ),
+        ), systemOverlayStyle: SystemUiOverlayStyle.dark,
         // actions: <Widget>[
         //   IconButton(
         //     icon: Icon(Icons.search),
@@ -72,19 +72,19 @@ class _HomeState extends State<Home> {
             icon: Icon(
               Icons.access_alarm,
             ),
-            title: Text('Alarmas'),
+            label: Text('Alarmas'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.map,
             ),
-            title: Text('Mapa'),
+            label: Text('Mapa'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
             ),
-            title: Text('Busqueda'),
+            label: Text('Busqueda'),
           ),
         ],
         currentIndex: _selectedIndex,

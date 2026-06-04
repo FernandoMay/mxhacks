@@ -383,8 +383,7 @@ class Ficha extends StatelessWidget {
               ),
             ),
           ),
-          datated != null
-              ? Container(
+          Container(
                   child: Text(
                     datated,
                     style: TextStyle(
@@ -393,8 +392,7 @@ class Ficha extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                )
-              : Container(),
+                ),
         ],
       ),
     );

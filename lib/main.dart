@@ -19,9 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'pastillaMe',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-        accentColor: Colors.deepOrangeAccent,
-        focusColor: Colors.deepOrangeAccent,
+        focusColor: Colors.deepOrangeAccent, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(secondary: Colors.deepOrangeAccent),
       ),
       home: Splash(),
     );

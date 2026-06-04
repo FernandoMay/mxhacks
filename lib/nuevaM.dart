@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mxhck/alarmas.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:page_transition/page_transition.dart';
 
 class newMed extends StatefulWidget {
   @override
