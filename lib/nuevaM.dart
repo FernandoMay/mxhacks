@@ -89,7 +89,7 @@ class _newMedState extends State<newMed> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.12),
+                    color: Colors.black.withValues(alpha: 0.12),
                     offset: Offset(0, 10),
                     blurRadius: 30,
                   ),
@@ -135,7 +135,7 @@ class _newMedState extends State<newMed> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.12),
+                    color: Colors.black.withValues(alpha: 0.12),
                     offset: Offset(0, 10),
                     blurRadius: 30,
                   ),
@@ -175,8 +175,8 @@ class _newMedState extends State<newMed> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                NumberPicker.integer(
-                  initialValue: _currentValue,
+                NumberPicker(
+                  value: _currentValue,
                   minValue: 1,
                   maxValue: 24,
                   onChanged: (newValue) =>

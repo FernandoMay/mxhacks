@@ -1,15 +1,18 @@
-# MX Hacks
+# PastillaMe
 
-Flutter hackathon project with Google Maps integration and camera capabilities.
+Medication reminder app built with Flutter.
+
+## Brand
+
+- **Name:** PastillaMe
+- **Color:** Orange (#FF6D00)
 
 ## Stack
 
-- **Flutter** (`>=2.1.0`) — Cross-platform mobile app
+- **Flutter** (>=3.0.0) — Cross-platform mobile app
 - **Google Maps** — Location & mapping features
 - **Camera** — Photo capture & processing
-- **WebView** - In-app browser
 - **HTTP** — API communication
-- **Splashscreen / Page Transitions** — Polished UX
 
 ## Quick Start
 

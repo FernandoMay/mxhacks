@@ -10,16 +10,15 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-bool checkedTerminos = false;
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'pastillaMe',
+      title: 'PastillaMe',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        focusColor: Colors.deepOrangeAccent, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange).copyWith(secondary: Colors.deepOrangeAccent),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFF6D00)),
       ),
       home: Splash(),
     );

@@ -3,12 +3,8 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:mxhck/alarmas.dart';
 import 'package:mxhck/nuevaM.dart';
-import 'package:path/path.dart' show join;
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:page_transition/page_transition.dart';
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,10 +19,7 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            PageTransition(
-              child: newMed(),
-              type: PageTransitionType.downToUp,
-            ),
+            MaterialPageRoute(builder: (_) => newMed()),
           );
         },
       ),
@@ -41,13 +34,6 @@ class MapPage extends StatefulWidget {
     //target: LatLng(lat, ln),
     zoom: 14.4746,
   );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(19.395749849, -99.176549),
-      //target: LatLng(lat,lng),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
 
   @override
   _MapPageState createState() => _MapPageState();
@@ -105,17 +91,17 @@ class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
 
   const TakePictureScreen({
-    Key key,
-    @required this.camera,
-  }) : super(key: key);
+    super.key,
+    required this.camera,
+  });
 
   @override
   TakePictureScreenState createState() => TakePictureScreenState();
 }
 
 class TakePictureScreenState extends State<TakePictureScreen> {
-  CameraController _controller;
-  Future<void> _initializeControllerFuture;
+  late CameraController _controller;
+  late Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
@@ -170,25 +156,15 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             // Ensure that the camera is initialized.
             await _initializeControllerFuture;
 
-            // Construct the path where the image should be saved using the
-            // pattern package.
-            final path = join(
-              // Store the picture in the temp directory.
-              // Find the temp directory using the `path_provider` plugin.
-              (await getApplicationDocumentsDirectory()).path,
-              '${DateTime.now()}.png',
-            );
-
             // Attempt to take a picture and log where it's been saved.
-            await _controller.takePicture(path);
+            final XFile photo = await _controller.takePicture();
 
             // If the picture was taken, display it on a new screen.
 
             Navigator.push(
               context,
-              PageTransition(
-                child: DisplayPictureScreen(imagePath: path),
-                type: PageTransitionType.downToUp,
+              MaterialPageRoute(
+                builder: (_) => DisplayPictureScreen(imagePath: photo.path),
               ),
             );
           } catch (e) {
@@ -205,7 +181,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+  const DisplayPictureScreen({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -347,7 +323,7 @@ class Ficha extends StatelessWidget {
   final String data;
   final String datated;
 
-  Ficha({this.data, this.datated});
+  Ficha({required this.data, required this.datated});
 
   @override
   Widget build(BuildContext context) {
@@ -363,7 +339,7 @@ class Ficha extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.12),
+            color: Colors.black.withValues(alpha: 0.12),
             offset: Offset(0, 10),
             blurRadius: 30,
           ),
@@ -404,7 +380,7 @@ class MyCard extends StatelessWidget {
   final String descripcion;
   final String hora;
 
-  MyCard({this.medicina, this.descripcion, this.hora});
+  MyCard({required this.medicina, required this.descripcion, required this.hora});
 
   @override
   Widget build(BuildContext context) {

@@ -72,19 +72,19 @@ class _HomeState extends State<Home> {
             icon: Icon(
               Icons.access_alarm,
             ),
-            label: Text('Alarmas'),
+            label: 'Alarmas',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.map,
             ),
-            label: Text('Mapa'),
+            label: 'Mapa',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
             ),
-            label: Text('Busqueda'),
+            label: 'Busqueda',
           ),
         ],
         currentIndex: _selectedIndex,

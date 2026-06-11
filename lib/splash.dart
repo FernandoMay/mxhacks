@@ -1,22 +1,32 @@
-import 'package:splashscreen/splashscreen.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mxhck/home.dart';
 
-class Splash extends StatelessWidget {
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 1), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => Home()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 1,
-      navigateAfterSeconds: Home(),
-      //image: Image.asset('lib/assets/zulogo.png'),
+    return Scaffold(
       backgroundColor: Colors.deepOrangeAccent,
-      //photoSize: 110,
-      //loaderColor: Colors.transparent,
-      title: Text(
-        'pastillaMe',
-        style: TextStyle(
-          fontSize: 38.0,
-          color: Colors.white,
+      body: Center(
+        child: Text(
+          'pastillaMe',
+          style: TextStyle(fontSize: 38.0, color: Colors.white),
         ),
       ),
     );

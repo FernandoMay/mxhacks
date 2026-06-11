@@ -6,13 +6,13 @@ class ListViewModel {
   final String hora;
 
   ListViewModel({
-    this.medicina,
-    this.descripcion,
-    this.hora,
+    required this.medicina,
+    required this.descripcion,
+    required this.hora,
   });
 }
 
-List listViewData = [
+List<ListViewModel> listViewData = [
   ListViewModel(
     medicina: "Medicina",
     descripcion: "De la que cura",
@@ -40,7 +40,7 @@ class DisplayListView extends StatefulWidget {
   _DisplayListViewState createState() => _DisplayListViewState();
 }
 
-class _DisplayListViewState extends State {
+class _DisplayListViewState extends State<DisplayListView> {
 
 
   @override
@@ -50,7 +50,7 @@ class _DisplayListViewState extends State {
       itemCount: listViewData.length,
       itemBuilder: (context, int i) => Column(
         children: [
-          new ListTile(
+          ListTile(
             leading: CircleAvatar(
 
               child: IconButton(
@@ -64,8 +64,8 @@ class _DisplayListViewState extends State {
                 },
               ),
             ),
-            title: new Text(listViewData[i].medicina),
-            subtitle: new Text(listViewData[i].descripcion),
+            title: Text(listViewData[i].medicina),
+            subtitle: Text(listViewData[i].descripcion),
             trailing: Text(
               listViewData[i].hora,
               style: TextStyle(
