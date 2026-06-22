@@ -1,24 +1,16 @@
-# PastillaMe
+# mxhck
 
-Medication reminder app built with Flutter.
+A new Flutter project.
 
-## Brand
+## Getting Started
 
-- **Name:** PastillaMe
-- **Color:** Orange (#FF6D00)
+This project is a starting point for a Flutter application.
 
-## Stack
+A few resources to get you started if this is your first Flutter project:
 
-- **Flutter** (>=3.0.0) — Cross-platform mobile app
-- **Google Maps** — Location & mapping features
-- **Camera** — Photo capture & processing
-- **HTTP** — API communication
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-## Quick Start
-
-```bash
-flutter pub get
-flutter run
-```
-
-Requires Google Maps API key.
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
